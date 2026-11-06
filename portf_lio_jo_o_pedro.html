@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João Pedro Ribeiro Teodoro | Redes e Segurança</title>
+    <meta name="description" content="Portfólio de João Pedro Ribeiro Teodoro, Estudante de Ciência da Computação com foco em Redes e Segurança da Informação.">
+    
+    <!-- Open Graph para LinkedIn -->
+    <meta property="og:title" content="João Pedro R. Teodoro | Portfólio">
+    <meta property="og:description" content="Estudante de Ciência da Computação | Redes e Segurança">
+    <meta property="og:type" content="website">
+
+    <!-- Ícones -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Configuração da Foto -->
+    <script>
+        // Envie sua foto para o repositório do GitHub, na mesma pasta do index.html, e coloque aqui o nome exato do arquivo (exemplo: foto.jpg ou foto.png). Também funciona com um link de imagem.
+        const foto = "foto.jpg";
+    </script>
+
+    <style>
+        /* 
+         * VARIÁVEIS DE CORES E TEMA
+         * Inspirado na estética do YouTube (Fundo escuro, superfícies acinzentadas e destaque vermelho)
+         * Troque as cores do site aqui 
+         */
+        :root {
+            /* Tema Escuro (Padrão) */
+            --cor-fundo: #0f0f0f;
+            --cor-superficie: #272727;
+            --cor-superficie-hover: #3f3f3f;
+            --cor-borda: #3f3f3f;
+            --cor-texto: #f1f1f1;
+            --cor-texto-suave: #aaaaaa;
+            
+            /* Destaque (Vermelho YouTube) */
+            --cor-destaque: #ff0000;
+            --cor-destaque-hover: #cc0000;
+            --cor-destaque-suave: rgba(255, 0, 0, 0.1);
+
+            --fonte-principal: 'Outfit', sans-serif;
+            --transicao: 0.3s ease;
+            --arredondamento: 12px;
+            --arredondamento-botoes: 999px; /* Estilo pílula do YouTube */
+        }
+
+        [data-theme="light"] {
+            --cor-fundo: #ffffff;
+            --cor-superficie: #f2f2f2;
+            --cor-superficie-hover: #e5e5e5;
+            --cor-borda: #cccccc;
+            --cor-texto: #0f0f0f;
+            --cor-texto-suave: #606060;
+        }
+
+        /* RESET BÁSICO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fonte-principal);
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            transition: background-color var(--transicao), color var(--transicao);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transicao);
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--cor-destaque);
+            outline-offset: 4px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* LAYOUT GERAL */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--cor-texto);
+        }
+
+        /* CABEÇALHO / MENU */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--cor-fundo);
+            border-bottom: 1px solid var(--cor-borda);
+            z-index: 1000;
+            transition: background-color var(--transicao);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--cor-texto-suave);
+        }
+
+        .nav-links a:hover {
+            color: var(--cor-texto);
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--cor-texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color var(--transicao);
+        }
+
+        .icon-btn:hover {
+            background-color: var(--cor-superficie);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* SEÇÃO INICIAL (HERO) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 72px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 800px;
+        }
+
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--cor-superficie);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--cor-borda);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* Mostrado via JS se a imagem carregar */
+        }
+
+        .avatar-initials {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--cor-texto-suave);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--cor-texto-suave);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cor-texto-suave);
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--arredondamento-botoes);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transicao);
+            border: none;
+            min-height: 44px;
+        }
+
+        .btn-primary {
+            background-color: var(--cor-destaque);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--cor-destaque-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--cor-superficie);
+            color: var(--cor-texto);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--cor-superficie-hover);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: var(--cor-texto-suave);
+            transition: color var(--transicao);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--cor-superficie);
+        }
+
+        .social-links a:hover {
+            color: var(--cor-texto);
+            background-color: var(--cor-superficie-hover);
+        }
+
+        /* SOBRE MIM */
+        .sobre-texto {
+            font-size: 1.1rem;
+            color: var(--cor-texto-suave);
+            max-width: 800px;
+        }
+
+        /* HABILIDADES */
+        .habilidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .habilidade-grupo {
+            background-color: var(--cor-fundo);
+            border: 1px solid var(--cor-borda);
+            border-radius: var(--arredondamento);
+            padding: 24px;
+        }
+
+        .habilidade-grupo h3 {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .habilidade-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .habilidade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 8px;
+        }
+
+        .habilidade-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .habilidade-nome {
+            font-weight: 500;
+        }
+
+        .habilidade-nivel {
+            font-size: 0.85rem;
+            color: var(--cor-texto-suave);
+            background-color: var(--cor-superficie);
+            padding: 4px 12px;
+            border-radius: var(--arredondamento-botoes);
+        }
+
+        /* PROJETOS (Estilo Thumbnail YT) */
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .projeto-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .projeto-imagem-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: var(--cor-superficie);
+            border-radius: var(--arredondamento);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--cor-borda);
+            transition: background-color var(--transicao);
+        }
+
+        .projeto-card:hover .projeto-imagem-placeholder {
+            background-color: var(--cor-superficie-hover);
+        }
+
+        .projeto-imagem-placeholder i {
+            font-size: 3rem;
+            color: var(--cor-texto-suave);
+        }
+
+        .projeto-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .projeto-info p {
+            color: var(--cor-texto-suave);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--cor-texto-suave);
+            background-color: var(--cor-superficie);
+            padding: 4px 12px;
+            border-radius: var(--arredondamento-botoes);
+        }
+
+        /* EXPERIÊNCIA (Linha do tempo limpa) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            border-left: 2px solid var(--cor-superficie);
+            padding-left: 24px;
+            margin-left: 12px;
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px; /* 24px padding + 2px border / 2 + size adjustment */
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--cor-destaque);
+            border: 4px solid var(--cor-fundo);
+        }
+
+        .timeline-header {
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--cor-texto-suave);
+        }
+
+        .timeline-desc {
+            color: var(--cor-texto-suave);
+            font-size: 0.95rem;
+        }
+
+        /* FORMAÇÃO */
+        .formacao-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .formacao-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .formacao-bloco h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 8px;
+        }
+
+        .formacao-item {
+            margin-bottom: 16px;
+        }
+        
+        .formacao-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .formacao-item strong {
+            display: block;
+            font-weight: 500;
+        }
+
+        .formacao-item span {
+            font-size: 0.9rem;
+            color: var(--cor-texto-suave);
+        }
+
+        /* RODAPÉ */
+        footer {
+            border-top: 1px solid var(--cor-borda);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--cor-texto-suave);
+            font-size: 0.9rem;
+        }
+
+        /* ANIMAÇÕES DE ROLAGEM */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background-color: var(--cor-fundo);
+                flex-direction: column;
+                padding: 24px;
+                border-bottom: 1px solid var(--cor-borda);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+                gap: 24px;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* RESPEITAR PREFERÊNCIA DE REDUÇÃO DE MOVIMENTO */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">JPT.</a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#sobre" class="nav-item">Sobre</a>
+                <a href="#habilidades" class="nav-item">Habilidades</a>
+                <a href="#projetos" class="nav-item">Projetos</a>
+                <a href="#experiencia" class="nav-item">Experiência</a>
+                <a href="#formacao" class="nav-item">Formação</a>
+            </nav>
+
+            <div class="controls">
+                <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- INÍCIO -->
+        <section id="inicio" class="hero container">
+            <div class="hero-content">
+                <div class="avatar-container" id="avatarContainer">
+                    <img id="perfilImg" src="" alt="Foto de João Pedro Ribeiro Teodoro">
+                    <span class="avatar-initials" id="avatarInitials">JP</span>
+                </div>
+                
+                <div>
+                    <h1>João Pedro Ribeiro Teodoro</h1>
+                    <h2>Estudante de Ciência da Computação | Redes e Segurança</h2>
+                </div>
+                
+                <p>Busco oportunidades na área de infraestrutura, redes e segurança, focado em garantir a estabilidade técnica e resolver problemas com ferramentas e distribuições Linux.</p>
+                
+                <div class="hero-actions">
+                    <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+                    <a href="mailto:joaopedro.teodoro65@gmail.com" class="btn btn-secondary">Entrar em contato</a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/joão-pedro-ribeiro-teodoro-5488b3424" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="ph ph-linkedin-logo"></i>
+                    </a>
+                    <a href="https://github.com/joaoteodoroo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="ph ph-github-logo"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE MIM -->
+        <section id="sobre" class="container reveal">
+            <h2 class="section-title">Sobre</h2>
+            <p class="sobre-texto">
+                Escolhi a Ciência da Computação pelo meu interesse prático em entender e mexer com computadores, especialmente explorando diferentes distribuições Linux e ferramentas de terminal. No dia a dia acadêmico e nos projetos, procuro manter uma boa comunicação para entender bem as tarefas, além de ser proativo e curioso para pesquisar e resolver os problemas que surgem.
+            </p>
+        </section>
+
+        <!-- HABILIDADES -->
+        <section id="habilidades" class="container reveal">
+            <h2 class="section-title">Habilidades</h2>
+            
+            <div class="habilidades-grid">
+                <div class="habilidade-grupo">
+                    <h3><i class="ph ph-terminal-window"></i> Infraestrutura e Ferramentas</h3>
+                    <div class="habilidade-lista">
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Linux (Fedora, Ubuntu, Mint)</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Proxmox</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Git/GitHub</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Node.js</span>
+                            <span class="habilidade-nivel">Básico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="habilidade-grupo">
+                    <h3><i class="ph ph-code"></i> Linguagens e Frameworks</h3>
+                    <div class="habilidade-lista">
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Python</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">C</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">SQL</span>
+                            <span class="habilidade-nivel">Intermediário</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Java</span>
+                            <span class="habilidade-nivel">Básico</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">HTML/CSS & React</span>
+                            <span class="habilidade-nivel">Básico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="habilidade-grupo">
+                    <h3><i class="ph ph-users"></i> Comportamentais</h3>
+                    <div class="habilidade-lista">
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Boa comunicação</span>
+                            <span class="habilidade-nivel">Clareza nas tarefas</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Proatividade</span>
+                            <span class="habilidade-nivel">Iniciativa</span>
+                        </div>
+                        <div class="habilidade-item">
+                            <span class="habilidade-nome">Curiosidade</span>
+                            <span class="habilidade-nivel">Resolução de problemas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS -->
+        <section id="projetos" class="container reveal">
+            <h2 class="section-title">Projetos</h2>
+            
+            <div class="projetos-grid">
+                <!-- Projeto 1 -->
+                <article class="projeto-card">
+                    <div class="projeto-imagem-placeholder">
+                        <i class="ph ph-hard-drives"></i>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Supervisão e Auditoria de Infraestrutura de TI</h3>
+                        <p>Atuação na correção de métricas de monitoramento e auditoria de inventário para alinhar o ambiente real à documentação. Organização de grupos de hosts, resolução de falsos positivos e triagem de incidentes reais de rede.</p>
+                        <div class="tags">
+                            <span class="tag">Zabbix</span>
+                            <span class="tag">Proxmox</span>
+                            <span class="tag">SNMP</span>
+                            <span class="tag">ICMP</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 2 -->
+                <article class="projeto-card">
+                    <div class="projeto-imagem-placeholder">
+                        <i class="ph ph-browsers"></i>
+                    </div>
+                    <div class="projeto-info">
+                        <h3>Projeto de Desenvolvimento Web em Grupo</h3>
+                        <p>Projeto prático em equipe focado no aprendizado de desenvolvimento de software. Atuação no desenvolvimento full-stack, com fluxo de trabalho organizado através da divisão de tarefas por issues no repositório.</p>
+                        <div class="tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">React</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Git</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- EXPERIÊNCIA -->
+        <section id="experiencia" class="container reveal">
+            <h2 class="section-title">Experiência</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Pesquisador / Bolsista de Iniciação Científica</h3>
+                        <span class="timeline-subtitle">Universidade Federal de Mato Grosso (UFMT)</span>
+                    </div>
+                    <p class="timeline-desc">Responsável por auditar máquinas virtuais, gerir incidentes reais de rede e refinar os alertas do painel de monitoramento, eliminando divergências de inventário focando em infraestrutura.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Desenvolvedor de Software</h3>
+                        <span class="timeline-subtitle">Projeto Pessoal em Grupo • Presente (há 2 meses)</span>
+                    </div>
+                    <p class="timeline-desc">Desenvolvimento full-stack de aplicações para fins de estudo e prática, colaborando ativamente com outros estudantes da UFMT e gerenciando tarefas compartilhadas.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">Manutenção de Computadores</h3>
+                        <span class="timeline-subtitle">Autônomo</span>
+                    </div>
+                    <p class="timeline-desc">Experiência prática com manutenção preventiva e corretiva, e configuração de hardware e software em computadores pessoais.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMAÇÃO -->
+        <section id="formacao" class="container reveal">
+            <h2 class="section-title">Formação e Atividades</h2>
+            
+            <div class="formacao-grid">
+                <div class="formacao-bloco">
+                    <h3>Acadêmico</h3>
+                    <div class="formacao-item">
+                        <strong>Ciência da Computação (4º Semestre)</strong>
+                        <span>Universidade Federal de Mato Grosso (UFMT) • Conclusão em 08/2028</span>
+                    </div>
+                </div>
+
+                <div class="formacao-bloco">
+                    <h3>Idiomas e Eventos</h3>
+                    <div class="formacao-item">
+                        <strong>Inglês</strong>
+                        <span>Nível Intermediário</span>
+                    </div>
+                    <div class="formacao-item">
+                        <strong>Eventos e Congressos (2026)</strong>
+                        <span>Participação no CSBC, BRACIS e SEMATEC</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>João Pedro Ribeiro Teodoro &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. LÓGICA DA FOTO DE PERFIL
+            const imgElement = document.getElementById('perfilImg');
+            const initialsElement = document.getElementById('avatarInitials');
+
+            if (foto && foto.trim() !== '') {
+                imgElement.src = foto;
+                imgElement.onload = () => {
+                    imgElement.style.display = 'block';
+                    initialsElement.style.display = 'none';
+                };
+                imgElement.onerror = () => {
+                    // Fallback se a imagem não for encontrada
+                    imgElement.style.display = 'none';
+                    initialsElement.style.display = 'block';
+                };
+            } else {
+                imgElement.style.display = 'none';
+                initialsElement.style.display = 'block';
+            }
+
+            // 2. MENU MOBILE
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.replace('ph-list', 'ph-x');
+                } else {
+                    icon.classList.replace('ph-x', 'ph-list');
+                }
+            });
+
+            // Fechar menu ao clicar em um link
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.replace('ph-x', 'ph-list');
+                });
+            });
+
+            // 3. TEMA (CLARO/ESCURO)
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+            const themeIcon = themeToggle.querySelector('i');
+
+            // Verifica preferência salva ou do sistema
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+                htmlElement.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('ph-moon', 'ph-sun');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.getAttribute('data-theme') === 'light') {
+                    htmlElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('ph-sun', 'ph-moon');
+                } else {
+                    htmlElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('ph-moon', 'ph-sun');
+                }
+            });
+
+            // 4. ANIMAÇÕES DE ROLAGEM SUTIS
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            // Respeita prefers-reduced-motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target); // Anima apenas uma vez
+                        }
+                    });
+                }, {
+                    root: null,
+                    threshold: 0.15,
+                    rootMargin: "0px 0px -50px 0px"
+                });
+
+                revealElements.forEach(el => revealObserver.observe(el));
+            } else {
+                // Se não suportar ou preferir sem movimento, exibe tudo imediatamente
+                revealElements.forEach(el => el.classList.add('active'));
+            }
+        });
+    </script>
+</body>
+</html>
